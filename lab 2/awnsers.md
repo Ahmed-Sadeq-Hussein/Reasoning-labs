@@ -7,10 +7,11 @@ Complex and reliable for ontologies
 * OWL 2 FULL is based on the RDF compatible semantics, however unlike DL it is undecidable and there are no reasoners for WOL2 FULL.
 Nax freedom and good for theoretical testing and integratin messy RDF data.
 
-* OWL 2 EL is based on a description logic family called EL++ . It's optimized for efficient classification of large ontology's .
+* OWL 2 EL is based on a description logic family called EL++ . It's optimized for efficient classification of large ontology's with a lot of classes and or properties.
 
-* OWL 2 QL is a language optimized for ontology based query awnsering , that is to say that the Ontology schema is used to rewrite and enrich queries over a large instance data sored in a data base in that ontology.
+* OWL 2 QL is a language optimized for ontology based query awnsering , that is to say that the Ontology schema is used to rewrite and enrich queries over a large instance data stored in a data base in that ontology.
 
+* OWL 2 RL is aimed at applications that require scalable reasoning without sacrifising too much expressiveness
 4.  
 1) 
 * HappyPerson 
@@ -38,6 +39,9 @@ hasage queries
 4) 
 * John 
 John is a father and has exactly 5 children, 3 of which are parents and john can not have more than 4 children that are parents and less than 2 children that are parents .
+He has a wife who is Mary. 
+He is 51 years of age .
+and he is diffrent from the individual Bill. ergo he is not Bill
 5) 
 1. 
 {universities, faculties, students, courses, programs, prerequisites,
