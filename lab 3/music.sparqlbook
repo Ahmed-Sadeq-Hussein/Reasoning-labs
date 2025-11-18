@@ -42,9 +42,21 @@
     "metadata": {}
   },
   {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Returns all albums created by solo artists. \\\r\nTable includes parameters:\r\n* album   \r\n  (album)\r\n* artist \\\r\n  (solo artist)",
+    "metadata": {}
+  },
+  {
     "kind": 2,
     "language": "sparql",
     "value": "prefix : <http://stardog.com/tutorial/>\n\nSELECT *\n{\n   ?album a :Album ;\n          :artist ?artist ;\n          :date ?date\n}\nORDER BY desc(?date)\nLIMIT 10",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Returns all albums (ordered by their date in descending order).\\\r\nTable includes parameters:\r\n* album   \r\n  (album)\r\n* artist  \r\n  (artist)\r\n* date \\\r\n  (date)",
     "metadata": {}
   },
   {
@@ -54,9 +66,21 @@
     "metadata": {}
   },
   {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Returns all albums released January 1st 1970 or later. \\\r\nTable includes parameters:\r\n* album   \r\n  (album)\r\n* artist  \r\n  (artist)\r\n* date \\\r\n  (date)",
+    "metadata": {}
+  },
+  {
     "kind": 2,
     "language": "sparql",
     "value": "prefix : <http://stardog.com/tutorial/>\n\nSELECT *\n{\n   ?album a :Album ;\n          :artist ?artist ;\n          :date ?date\n      FILTER (year(?date) >= 1970)\n}\nORDER BY ?date\nLIMIT 10",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Returns all albums released January 1st 1970 or later. \\\r\nTable includes parameters:\r\n* album   \r\n  (album)\r\n* artist  \r\n  (artist)\r\n* date \\\r\n  (date)",
     "metadata": {}
   },
   {
@@ -66,9 +90,21 @@
     "metadata": {}
   },
   {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Returns the total number of albums. \\\r\nTable includes parameters:\r\n* count\r\n  (total number of albums)",
+    "metadata": {}
+  },
+  {
     "kind": 2,
     "language": "sparql",
     "value": "prefix : <http://stardog.com/tutorial/>\n\nSELECT ?predicate (COUNT(?predicate) as ?predicateCount)\n{\n    ?subject ?predicate ?object .\n}\nGROUP BY ?predicate\nORDER BY DESC(?predicateCount)",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Returns the number of uses for each individual predicate. \\\r\nTable includes parameters:\r\n* predicate   \r\n  (predicate)\r\n* predicateCount \\\r\n  (number of uses for respective predicate)",
     "metadata": {}
   },
   {
@@ -78,9 +114,21 @@
     "metadata": {}
   },
   {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Returns the names of all solo artists and bands. \\\r\nTable includes parameters:\r\n* name \\\r\n  (name)",
+    "metadata": {}
+  },
+  {
     "kind": 2,
     "language": "sparql",
     "value": "prefix : <http://stardog.com/tutorial/>\n\nSELECT ?year (count(distinct ?album) AS ?count)\n{\n    ?album a :Album ;\n            :date ?date ;\n    BIND (year(?date) AS ?year)\n}\nGROUP BY ?year\nORDER BY desc(?count)\nLIMIT 10",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Returns the number of albums released each year (duplicate albums in the same year are avoided). \\\r\nTable includes parameters:\r\n* year   \r\n  (year)\r\n* count \\\r\n  (number of albums released that year)",
     "metadata": {}
   },
   {
@@ -90,9 +138,21 @@
     "metadata": {}
   },
   {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Returns all songs along with their length. If a song doesn't have a length, then it is simply returned with an empty length parameter. \\\r\nTable includes parameters:\r\n* song   \r\n  (song)\r\n* length \\\r\n  (length of song (if song has a length))",
+    "metadata": {}
+  },
+  {
     "kind": 2,
     "language": "sparql",
     "value": "prefix : <http://stardog.com/tutorial/>\n\nSELECT ?song \n{\n    ?song a :Song .\n    FILTER NOT EXISTS {\n        ?song :length ?length .\n    }\n}\nLIMIT 10",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Returns all songs that do not have any length. \\\r\nTable includes parameters:\r\n* song \\\r\n  (song without length)",
     "metadata": {}
   },
   {
@@ -102,15 +162,33 @@
     "metadata": {}
   },
   {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Returns all artist-and-cowriter pairs that have worked on the same song. Songs with identical artist and cowriter are avoided. \\\r\nTable includes parameters:\r\n* artist   \r\n  (artist)\r\n* cowriter \\\r\n  (cowriter)",
+    "metadata": {}
+  },
+  {
     "kind": 2,
     "language": "sparql",
     "value": "prefix : <http://stardog.com/tutorial/>\n\nselect distinct ?artist ?cowriter\n{\n    ?artist ^:writer ?song .\n    ?song :writer ?cowriter\n    FILTER (?artist != ?cowriter)\n}\nLIMIT 10",
     "metadata": {}
   },
   {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Returns the number of albums released each year (duplicate albums in the same year are avoided). \\\r\nTable includes parameters:\r\n* year   \r\n  (year)\r\n* count \\\r\n  (number of albums released that year)",
+    "metadata": {}
+  },
+  {
     "kind": 2,
     "language": "sparql",
     "value": "prefix : <http://stardog.com/tutorial/>\n\nselect ?song \n{\n  ?song (^:track/:artist/:member?)|:writer :Paul_McCartney\n}\nLIMIT 10",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Returns all songs that Paul McCartney released (including songs that The Beatles released) or wrote. \\\r\nTable includes parameters:\r\n* song \\\r\n  (song)",
     "metadata": {}
   }
 ]
