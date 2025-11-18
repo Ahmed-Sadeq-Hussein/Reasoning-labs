@@ -1,0 +1,110 @@
+@prefix : <http://example.com/rdf/family#> .
+@prefix fm: <http://example.com/owl/families/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:morzan a fm:Adult,
+        fm:Dead,
+        fm:Man ;
+    fm:hasAge "50"^^xsd:nonNegativeInteger ;
+    fm:hasChild :murtagh ;
+    fm:hasSon :murtagh ;
+    fm:loves :selena ;
+    fm:parentOf :murtagh .
+
+:sloan a fm:Adult,
+        fm:Man ;
+    fm:hasAge "48"^^xsd:nonNegativeInteger ;
+    fm:hasChild :katrina ;
+    fm:hasDaughter :katrina ;
+    fm:loves :katrina ;
+    fm:parentOf :katrina .
+
+:murtagh a fm:Adult,
+        fm:Man ;
+    fm:hasAge "20"^^xsd:nonNegativeInteger ;
+    fm:hasAncestor :morzan,
+        :selena ;
+    fm:hasFather :morzan ;
+    fm:hasParent :selena .
+
+:brom a fm:Adult,
+        fm:Dead,
+        fm:Man ;
+    fm:hasAge "120"^^xsd:nonNegativeInteger ;
+    fm:hasChild :eragon ;
+    fm:hasSon :eragon ;
+    fm:loves :eragon,
+        :selena ;
+    fm:parentOf :eragon .
+
+:garrow a fm:Adult,
+        fm:Man ;
+    fm:hasAge "43"^^xsd:nonNegativeInteger ;
+    fm:hasChild :roran ;
+    fm:hasSon :roran ;
+    fm:loves :eragon,
+        :roran ;
+    fm:parentOf :roran .
+
+:selena a fm:Adult,
+        fm:Dead,
+        fm:Female,
+        fm:Woman ;
+    fm:hasAge "27"^^xsd:nonNegativeInteger ;
+    fm:hasBrother :garrow ;
+    fm:hasChild :eragon ;
+    fm:hasSon :eragon ;
+    fm:loves :brom ;
+    fm:parentOf :eragon .
+
+:ismira a fm:Female,
+        fm:Happy,
+        fm:Woman,
+        fm:YoungChild ;
+    fm:hasAge "0"^^xsd:nonNegativeInteger ;
+    fm:hasAncestor :katrina,
+        :roran ;
+    fm:hasFather :roran ;
+    fm:hasParent :katrina ;
+    fm:loves :katrina,
+        :roran .
+
+:eragon a fm:Man ;
+    fm:hasAge "17"^^xsd:nonNegativeInteger ;
+    fm:hasAncestor :brom,
+        :selena ;
+    fm:hasFather :brom ;
+    fm:hasParent :selena ;
+    fm:loves :brom,
+        :garrow,
+        :roran .
+
+:katrina a fm:Adult,
+        fm:Female,
+        fm:Happy,
+        fm:Woman ;
+    fm:hasAge "20"^^xsd:nonNegativeInteger ;
+    fm:hasAncestor :sloan ;
+    fm:hasChild :ismira ;
+    fm:hasDaughter :ismira ;
+    fm:hasFather :sloan ;
+    fm:hasSposue :roran ;
+    fm:loves :ismira,
+        :roran ;
+    fm:parentOf :ismira .
+
+:roran a fm:Adult,
+        fm:Happy,
+        fm:Man ;
+    fm:hasAge "20"^^xsd:nonNegativeInteger ;
+    fm:hasAncestor :garrow ;
+    fm:hasChild :ismira ;
+    fm:hasDuaghter :ismira ;
+    fm:hasFather :garrow ;
+    fm:hasWife :katrina ;
+    fm:loves :eragon,
+        :garrow,
+        :ismira,
+        :katrina ;
+    fm:parentOf :ismira .
+
